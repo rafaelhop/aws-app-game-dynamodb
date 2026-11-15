@@ -1,6 +1,5 @@
 package br.com.rafaelhop.app_dynamodb.entity
 
-import br.com.rafaelhop.app_dynamodb.controller.dto.ScoreDto
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey
@@ -22,14 +21,14 @@ data class PlayerHistory(
     var createdAt: Instant? = null,
 ) {
     companion object {
-        fun fromScoreDto(
+        fun create(
             userName: String,
-            scoreDto: ScoreDto,
+            score: Double,
         ): PlayerHistory =
             PlayerHistory(
                 userName = userName,
                 gameId = UUID.randomUUID(),
-                score = scoreDto.score,
+                score = score,
                 createdAt = Instant.now(),
             )
     }
